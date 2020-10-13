@@ -1,4 +1,4 @@
-import { total, restante, form, expensesList } from '../componentes.js';
+import { total, restante, form, expensesList, updateExpenses } from '../componentes.js';
 
 export class UI {
 
@@ -36,6 +36,7 @@ export class UI {
             const btnDelete = document.createElement( 'button' );
             btnDelete.classList.add( 'btn', 'btn-danger', 'borrar-gasto' );
             btnDelete.innerHTML = 'Borrar &times';
+            btnDelete.onclick = () => { updateExpenses( id ); }
             
             newExpense.appendChild( btnDelete );
             expensesList.appendChild( newExpense );
@@ -50,7 +51,7 @@ export class UI {
             divRemaining.classList.remove( 'alert-success', 'alert-warning' );
             divRemaining.classList.add( 'alert-danger' );
         } else if( ( budget / 2 ) > remaining ){
-            divRemaining.classList.remove( 'alert-success' );
+            divRemaining.classList.remove( 'alert-success', 'alert-danger' );
             divRemaining.classList.add( 'alert-warning' );
         } else {
             divRemaining.classList.remove( 'alert-danger', 'alert-warning' );
