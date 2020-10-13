@@ -42,6 +42,29 @@ export class UI {
         });
     }
     
+    checkBuget( budgetObj ) {
+        const { budget, remaining } = budgetObj;
+        const divRemaining = document.querySelector( '.restante' );
+        
+        if( ( budget / 4 ) > remaining ) {
+            divRemaining.classList.remove( 'alert-success', 'alert-warning' );
+            divRemaining.classList.add( 'alert-danger' );
+        } else if( ( budget / 2 ) > remaining ){
+            divRemaining.classList.remove( 'alert-success' );
+            divRemaining.classList.add( 'alert-warning' );
+        } else {
+            divRemaining.classList.remove( 'alert-danger', 'alert-warning' );
+            divRemaining.classList.add( 'alert-success' );
+        }
+
+        if( remaining <= 0 ) {
+            this.showAlert( 'El presupuesto se ha agotado', 'error' );
+            form.querySelector( 'button[type="submit"]' ).disabled = true; 
+        } else {            
+            form.querySelector( 'button[type="submit"]' ).disabled = false; 
+        }
+    }
+
     cleanHTML() {
         while( expensesList.firstChild ) { expensesList.removeChild( expensesList.firstChild ); }
     }
