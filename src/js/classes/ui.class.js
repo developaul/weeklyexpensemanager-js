@@ -1,4 +1,4 @@
-import { total, restante, form } from '../componentes.js';
+import { total, restante, form, expensesList } from '../componentes.js';
 
 export class UI {
 
@@ -20,6 +20,30 @@ export class UI {
         setTimeout( () => {
             divMessage.remove();
         }, 3000 );
+    }
+
+    showExpenses( expenses ) {
+        this.cleanHTML();
+
+        expenses.forEach( expense => {
+            const { name, quantity, id } = expense;
+
+            const newExpense = document.createElement( 'li' );
+            newExpense.className = 'list-group-item d-flex justify-content-between align-items-center';
+            newExpense.dataset.id = id;
+            newExpense.innerHTML = `${ name } <span class="badge badge-primary badge-pill"> $ ${ quantity } </span>`;
+
+            const btnDelete = document.createElement( 'button' );
+            btnDelete.classList.add( 'btn', 'btn-danger', 'borrar-gasto' );
+            btnDelete.innerHTML = 'Borrar &times';
+            
+            newExpense.appendChild( btnDelete );
+            expensesList.appendChild( newExpense );
+        });
+    }
+    
+    cleanHTML() {
+        while( expensesList.firstChild ) { expensesList.removeChild( expensesList.firstChild ); }
     }
 
 }
