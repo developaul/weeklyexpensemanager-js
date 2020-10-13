@@ -5,5 +5,8 @@ export class Budget {
         this.remaining  = this.budget;
         this.expenses   = [];
     }
-    
+ 
+    newExpense( expense ) {
+        this.expenses = [ ...this.expenses, expense ];
+    }
 }
