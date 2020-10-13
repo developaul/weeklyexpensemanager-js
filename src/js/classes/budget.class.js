@@ -15,4 +15,9 @@ export class Budget {
         const expensed = this.expenses.reduce( ( total, expense ) => total + expense.quantity ,0 );
         this.remaining = this.budget - expensed;
     }
+
+    deleteExpense( id ) {
+        this.expenses = this.expenses.filter( expense => expense.id != id ); 
+        this.calculateRemaining();
+    }
 }
