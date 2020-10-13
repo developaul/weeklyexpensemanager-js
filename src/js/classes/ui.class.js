@@ -46,4 +46,8 @@ export class UI {
         while( expensesList.firstChild ) { expensesList.removeChild( expensesList.firstChild ); }
     }
 
+    updateRemaining( remaining ) {
+        restante.textContent = remaining;
+    }
+
 }
